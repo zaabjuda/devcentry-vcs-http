@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/zaabjuda/devcentry-vcs-http.svg)](https://travis-ci.org/zaabjuda/devcentry-vcs-http)
