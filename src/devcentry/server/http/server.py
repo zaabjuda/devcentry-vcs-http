@@ -21,7 +21,7 @@ logger = logging.getLogger("tornado.general")
 def make_app(io_loop):
     app = Application([
         ('/.*/git-.*', BaseHandler),
-        ('/.*/info/refs', BaseHandler),
+        ('/(?P<name_space>[\w-]+)/(?P<project>[\w-]+)\.git/info/refs', BaseHandler),
         ('/.*/HEAD', BaseHandler),
         ('/.*/objects/.*', BaseHandler),
     ])
