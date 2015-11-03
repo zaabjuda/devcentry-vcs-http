@@ -39,6 +39,6 @@ def run_server():
     # Run server on corresponding port
     logging.info("Starting endpoint")
     app = make_app(io_loop)
-    app.listen(9934)
+    app.listen(options['port'])
     # Spin forever
     IOLoop.current().start()
