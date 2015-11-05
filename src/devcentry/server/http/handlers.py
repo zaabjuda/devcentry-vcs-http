@@ -18,8 +18,8 @@ class BaseHandler(RequestHandler):
         self.gitcommand = 'git'
 
     def git_lookup(self):
-        real_path =  os.path.join(self.application.git_dir, self.path_kwargs['name_space'],
-                                  self.path_kwargs['project']) + '.git'
+        real_path = os.path.join(self.application.git_dir, self.path_kwargs['name_space'],
+                                 self.path_kwargs['project']) + '.git'
         if os.path.isdir(real_path):
             return real_path
         return False
@@ -73,10 +73,10 @@ class InfoRefsHandler(BaseHandler):
                 raise HTTPError(403, 'You are not allowed to perform this action')
         if not rpc:
             logger.debug("Dumb client detected")
-            raise  NotImplemented
+            raise NotImplemented
             return
         rpc = rpc[4:]
         start_off = '# service=git-' + rpc
         start_off = str(hex(len(start_off) + 4)[2:].rjust(4, '0')) + start_off
-        start_off += '0000' # flush packet
+        start_off += '0000'  # flush packet
         raise NotImplemented
