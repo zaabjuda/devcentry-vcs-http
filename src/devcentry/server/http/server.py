@@ -12,7 +12,7 @@ from tornado.platform.asyncio import AsyncIOMainLoop
 from tornado.web import Application
 
 from .banner import print_banner
-from .handlers import BaseHandler
+from .handlers import InfoRefsHandler, BaseHandler
 
 
 logger = logging.getLogger("tornado.general")
@@ -21,7 +21,7 @@ logger = logging.getLogger("tornado.general")
 def make_app(io_loop):
     app = Application([
         ('/.*/git-.*', BaseHandler),
-        ('/(?P<name_space>[\w-]+)/(?P<project>[\w-]+)\.git/info/refs', BaseHandler),
+        ('/(?P<name_space>[\w-]+)/(?P<project>[\w-]+)\.git/info/refs', InfoRefsHandler),
         ('/.*/HEAD', BaseHandler),
         ('/.*/objects/.*', BaseHandler),
     ])
@@ -39,6 +39,7 @@ def run_server():
     # Run server on corresponding port
     logging.info("Starting endpoint")
     app = make_app(io_loop)
+    app.git_dir = '/home/dzhiltsov/tmp/'
     app.listen(options['port'])
     # Spin forever
     IOLoop.current().start()
