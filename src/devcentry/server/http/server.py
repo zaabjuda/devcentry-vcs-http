@@ -12,7 +12,7 @@ from tornado.platform.asyncio import AsyncIOMainLoop
 from tornado.web import Application
 
 from .banner import print_banner
-from .handlers import InfoRefsHandler, BaseHandler
+from .handlers import InfoRefsHandler, BaseHandler, FileHandler
 
 
 logger = logging.getLogger("tornado.general")
@@ -22,7 +22,7 @@ def make_app(io_loop):
     app = Application([
         ('/.*/git-.*', BaseHandler),
         ('/(?P<name_space>[\w-]+)/(?P<project>[\w-]+)\.git/info/refs', InfoRefsHandler),
-        ('/.*/HEAD', BaseHandler),
+        ('/(?P<name_space>[\w-]+)/(?P<project>[\w-]+)\.git/HEAD', FileHandler),
         ('/.*/objects/.*', BaseHandler),
     ])
     return app
